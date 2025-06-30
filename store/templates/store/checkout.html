@@ -1,0 +1,28 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<h1>Checkout</h1>
+<div style="display: flex; justify-content: space-between; gap: 20px;">
+    <div style="flex: 2;">
+        <h2>Shipping Information</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Place Order (Simulated Payment)</button>
+        </form>
+    </div>
+    <div style="flex: 1;">
+        <h2>Order Summary</h2>
+        {% for item in cart_items %}
+            <p>
+                {{ item.product.name }} (x{{ item.quantity }})
+                <span style="float:right;">${{ item.total_price|floatformat:2 }}</span>
+            </p>
+        {% endfor %}
+        <hr>
+        <h4>Total: <span style="float:right;">${{ total_cart_price|floatformat:2 }}</span></h4>
+    </div>
+</div>
+{% endblock %}

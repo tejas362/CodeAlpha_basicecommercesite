@@ -1,0 +1,16 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    <a href="{% url 'product_list' %}">« Back to products</a>
+    <h1>{{ product.name }}</h1>
+    {% if product.imageURL %}
+        <img src="{{ product.imageURL }}" alt="{{ product.name }}" style="max-width:300px;">
+    {% endif %}
+    <p>{{ product.description }}</p>
+    <p>Price: ${{ product.price }}</p>
+    <p>Stock: {{ product.stock }}</p>
+    <button data-product="{{product.id}}" data-action="add" class="add-to-cart-btn">Add to Cart</button>
+{% endblock %}

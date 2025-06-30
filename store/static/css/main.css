@@ -1,0 +1,401 @@
+/* --- Reset & Base Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Modern Font */
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa; /* Light grey background */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff; /* Primary link color */
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Header & Navigation --- */
+.site-header {
+    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%); /* Eye-catching gradient */
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.store-logo {
+    font-size: 2.2rem; /* Larger font size */
+    font-weight: 700;
+    color: #fff; /* White color for logo */
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Subtle shadow */
+}
+.store-logo:hover {
+    color: #e0e0e0;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    color: #f0f0f0; /* Lighter text for nav items */
+    margin-left: 20px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.nav-item-cta { /* Call to action button style */
+    background-color: #ffc107; /* Bright yellow */
+    color: #333;
+    font-weight: 600;
+}
+.nav-item-cta:hover {
+    background-color: #e0a800;
+    color: #212529;
+}
+
+.cart-badge {
+    background-color: #dc3545; /* Red for cart count */
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 0.8em;
+    margin-left: 4px;
+    vertical-align: super;
+}
+
+/* User Dropdown */
+.user-dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.username-display {
+    color: #fff; /* Make username visible */
+    font-weight: 500;
+    padding: 8px 12px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%; /* Position below the username */
+    background-color: #fff;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    padding: 5px 0;
+}
+
+.user-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a,
+.dropdown-content .logout-button {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95rem;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdown-content a:hover,
+.dropdown-content .logout-button:hover {
+    background-color: #f1f1f1;
+}
+
+/* --- Main Content --- */
+.site-main {
+    flex-grow: 1; /* Makes sure footer stays at bottom */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+h1, h2, h3 {
+    color: #343a40; /* Darker heading color */
+    margin-bottom: 1rem;
+}
+
+/* Product Grid (Example - you might have this already) */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.product-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.product-item img {
+    max-width: 100%;
+    height: 200px; /* Adjust as needed */
+    object-fit: contain; /* or 'cover' */
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.product-item h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+.product-item h2 a {
+    color: inherit;
+}
+
+.product-item p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #007bff; /* Price color */
+    margin-bottom: 15px;
+}
+
+button, .btn {
+    display: inline-block;
+    background-color: #007bff; /* Primary button color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-primary { /* You can use this for special buttons */
+    background-color: #28a745; /* Green */
+}
+.btn-primary:hover {
+    background-color: #1e7e34;
+}
+
+
+/* --- Messages (Django messages framework) --- */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+.messages li {
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-size: 0.95rem;
+}
+.messages li.success { color: #0f5132; background-color: #d1e7dd; border-color: #badbcc; }
+.messages li.error { color: #842029; background-color: #f8d7da; border-color: #f5c2c7; }
+.messages li.warning { color: #664d03; background-color: #fff3cd; border-color: #ffecb5; }
+.messages li.info { color: #055160; background-color: #cff4fc; border-color: #b6effb; }
+
+
+/* --- Footer --- */
+.site-footer-bottom {
+    background-color: #343a40; /* Dark footer */
+    color: #adb5bd;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: auto; /* Pushes footer to bottom if content is short */
+}
+.site-footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* --- Form Styling (Basic) --- */
+form p {
+    margin-bottom: 1rem;
+}
+form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+    color: #495057;
+}
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="number"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px; /* Reduced margin if error messages are below */
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form input[type="number"]:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Example error list styling from Django forms */
+.errorlist {
+    list-style-type: none;
+    padding: 0;
+    color: #dc3545; /* Red for errors */
+    font-size: 0.85em;
+    margin-top: 0.25rem;
+}
+
+/* Table Styling (for cart, order history etc.) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    background-color: #f8f9fa; /* Light grey for table headers */
+    font-weight: 600;
+    color: #495057;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* --- Responsiveness --- */
+
+/* For tablets and smaller desktops (e.g., up to 992px) */
+@media (max-width: 992px) {
+    .container {
+        width: 95%; /* Use more screen width */
+    }
+    .product-grid {
+        /* Adjust columns if needed, e.g., 2 columns */
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+    .store-logo {
+        font-size: 1.8rem;
+    }
+    .nav-item {
+        margin-left: 10px;
+        padding: 6px 10px;
+    }
+}
+
+/* For mobile phones (e.g., up to 768px) */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column; /* Stack logo and links vertically */
+        align-items: flex-start;
+    }
+    .store-logo {
+        margin-bottom: 10px;
+    }
+    .nav-links {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-item {
+        margin-left: 0;
+        margin-bottom: 8px;
+        width: 100%; /* Make nav items full width */
+        text-align: left;
+    }
+    .user-dropdown .dropdown-content {
+        /* Adjust dropdown for mobile if needed, maybe make it full width */
+        min-width: 100%;
+        left: 0;
+        right: 0;
+    }
+    .product-grid {
+        /* Often 1 column on very small screens */
+        grid-template-columns: 1fr;
+    }
+    .site-main {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    /* You might want to hide some elements or create a hamburger menu icon
+       that toggles the .nav-links visibility using JavaScript.
+       This is a more complex step for a full mobile nav. */
+}
+
+/* Very small phones (e.g., up to 576px) */
+@media (max-width: 576px) {
+    h1 { font-size: 1.8rem; }
+    .store-logo { font-size: 1.6rem; }
+    /* Further adjustments */
+}

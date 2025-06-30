@@ -1,2 +1,0 @@
-# CodeAlpha_basicecommercesite
-

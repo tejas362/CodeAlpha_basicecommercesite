@@ -1,0 +1,49 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block title %}Your Shopping Cart{% endblock %}
+
+{% block content %}
+<h1>Your Shopping Cart</h1>
+{% if is_empty %}
+    <p>Your cart is empty. <a href="{% url 'product_list' %}">Go shopping!</a></p>
+{% else %}
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>
+                    {% if item.image %}
+                        <img src="{{ item.image }}" alt="{{ item.name }}" style="width:50px; height:auto;">
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td><a href="{% url 'product_detail' item.id %}">{{ item.name }}</a></td>
+                <td>${{ item.price|floatformat:2 }}</td>
+                <td>
+                    <button class="update-cart-btn" data-product="{{ item.id }}" data-action="remove">-</button>
+                    {{ item.quantity }}
+                    <button class="update-cart-btn" data-product="{{ item.id }}" data-action="add">+</button>
+                </td>
+                <td>${{ item.total_price|floatformat:2 }}</td>
+                <td>
+                    <button class="delete-cart-item-btn" data-product="{{ item.id }}" data-action="delete">Remove All</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Total Cart Value: ${{ total_cart_price|floatformat:2 }}</h3>
+    <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a> <!-- Create checkout URL later -->
+{% endif %}
+{% endblock %}

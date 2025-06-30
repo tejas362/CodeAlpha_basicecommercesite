@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FlipWear{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    {# Optional: Link to Google Fonts for a modern font #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header class="site-header">
+        <nav class="main-nav container">
+            <a href="{% url 'product_list' %}" class="store-logo">FlipWear</a>
+            <div class="nav-links">
+                <a href="{% url 'product_list' %}" class="nav-item">Shop</a>
+                <a href="{% url 'view_cart' %}" class="nav-item">
+                    Cart <span class="cart-badge" id="cart-total">0</span>
+                </a>
+                {% if user.is_authenticated %}
+                    <div class="nav-item user-dropdown">
+                        <span class="username-display">Hello, {{ user.first_name|default:user.username }}!</span>
+                        <div class="dropdown-content">
+                            <a href="{% url 'order_history' %}">My Orders</a>
+                            {% if user.is_staff %}
+                                <a href="{% url 'admin:index' %}">Admin Panel</a>
+                            {% endif %}
+                            <form id="logout-form" method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-button">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" class="nav-item">Login</a>
+                    <a href="{% url 'register' %}" class="nav-item nav-item-cta">Sign Up</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <main class="site-main container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="site-footer-bottom">
+        <div class="container">
+            <p>© {% now "Y" %} FlipWear. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/cart.js' %}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

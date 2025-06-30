@@ -1,0 +1,25 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+    <h1>Our Products</h1>
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-item">
+            <a href="{% url 'product_detail' product.id %}">
+                {% if product.imageURL %}
+                    <img src="{{ product.imageURL }}" alt="{{ product.name }}" style="max-width:150px;">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+                <h2>{{ product.name }}</h2>
+            </a>
+            <p>${{ product.price }}</p>
+            <p><small>Stock: {{ product.stock }}</small></p>
+            <button data-product="{{product.id}}" data-action="add" class="add-to-cart-btn">Add to Cart</button>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
